@@ -1,6 +1,6 @@
 #!/bin/bash
 export ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT:-$ANDROID_HOME}
-export ANDROID_NDK_ROOT=${ANDROID_NDK_ROOT:-$ANDROID_HOME/ndk/27.1.12297006}
+export ANDROID_NDK_ROOT=${ANDROID_NDK_ROOT:-$ANDROID_HOME/ndk/29.0.14206865}
 if [[ "$PWD" == *scripts ]]; then
    cd ..
 fi
