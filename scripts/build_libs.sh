@@ -1,6 +1,6 @@
 #!/bin/bash
-export ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT:-/data/data/com.termux/files/home/android-sdk}
-export ANDROID_NDK_ROOT=${ANDROID_NDK_ROOT:-/data/data/com.termux/files/home/android-sdk/ndk/27.0.12077973}
+export ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT:-$ANDROID_HOME}
+export ANDROID_NDK_ROOT=${ANDROID_NDK_ROOT:-$ANDROID_HOME/ndk/27.1.12297006}
 if [[ "$PWD" == *scripts ]]; then
    cd ..
 fi
