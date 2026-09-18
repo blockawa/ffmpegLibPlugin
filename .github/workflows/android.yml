@@ -24,11 +24,10 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
-    - name: Install cmdline-tools and NDK
+    - name: Install NDK
       run: |
-        sdkmanager --install "cmdline-tools;latest" || true
         yes | sdkmanager --licenses || true
-        sdkmanager --install "ndk;29.0.14033849"
+        sdkmanager --install "ndk;27.0.12077973"
 
     - name: Install build dependencies
       run: sudo apt-get update && sudo apt-get install -y nasm autogen
@@ -42,7 +41,7 @@ jobs:
     - name: Build FFmpeg native libraries
       env:
         ANDROID_SDK_ROOT: ${{ env.ANDROID_HOME }}
-        ANDROID_NDK_ROOT: ${{ env.ANDROID_HOME }}/ndk/29.0.14033849
+        ANDROID_NDK_ROOT: ${{ env.ANDROID_HOME }}/ndk/27.0.12077973
       run: ./scripts/build_libs.sh
 
     - name: Build APK
