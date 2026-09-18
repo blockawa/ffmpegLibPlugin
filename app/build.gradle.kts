@@ -27,6 +27,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("releaseBuild")
         }
         configureEach {
             //应用名
