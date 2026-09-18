@@ -43,10 +43,32 @@ jobs:
     - name: Grant execute permission
       run: chmod +x gradlew scripts/*.sh
 
+    - name: Cache FFmpeg kit source
+      id: cache-ffmpeg-kit
+      uses: actions/cache@v4
+      with:
+        path: ffmpeg-kit
+        key: ffmpeg-kit-${{ hashFiles('scripts/ffmpeg_enable_executable.diff') }}
+
     - name: Clone and patch ffmpeg-kit
+      if: steps.cache-ffmpeg-kit.outputs.cache-hit != 'true'
       run: ./scripts/setup_environ.sh
 
+    - name: Patch ffmpeg-kit if cached
+      if: steps.cache-ffmpeg-kit.outputs.cache-hit == 'true'
+      run: |
+        cd ffmpeg-kit
+        git apply --reject --whitespace=fix ../scripts/ffmpeg_enable_executable.diff || true
+
+    - name: Cache FFmpeg build
+      id: cache-ffmpeg
+      uses: actions/cache@v4
+      with:
+        path: app/src/main/jniLibs
+        key: ffmpeg-ndk${{ env.ANDROID_NDK_VERSION }}-${{ hashFiles('scripts/ffmpeg_enable_executable.diff') }}
+
     - name: Build FFmpeg native libraries
+      if: steps.cache-ffmpeg.outputs.cache-hit != 'true'
       run: ./scripts/build_libs.sh
 
     - name: Build APK
