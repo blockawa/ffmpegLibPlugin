@@ -24,11 +24,11 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
-    - name: Accept Android licenses
-      run: yes | sdkmanager --licenses || true
-
-    - name: Install NDK
-      run: sdkmanager "ndk;29.0.14033849"
+    - name: Install cmdline-tools and NDK
+      run: |
+        sdkmanager --install "cmdline-tools;latest" || true
+        yes | sdkmanager --licenses || true
+        sdkmanager --install "ndk;29.0.14033849"
 
     - name: Install build dependencies
       run: sudo apt-get update && sudo apt-get install -y nasm autogen
