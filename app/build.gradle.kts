@@ -38,9 +38,10 @@ android {
             //插件包在启动器内显示的名称
             manifestPlaceholders["des"] = "Provides FFmpeg (ffmpeg/ffprobe) native binaries for media processing"
 
-            //JVM环境参数配置 - 传递FFmpeg原生库路径
+            //JVM环境参数配置 - 传递FFmpeg二进制文件完整路径
             manifestPlaceholders["environment"] = mutableMapOf<String,String>().apply {
-                put("ffmpeg.lib.path", "{nativeLibraryDir}")
+                put("ffmpeg.exec.path", "{nativeLibraryDir}/libffmpeg.so")
+                put("ffprobe.exec.path", "{nativeLibraryDir}/libffprobe.so")
             }.run {
                 buildList {
                     this@run.forEach { (key, value) ->
