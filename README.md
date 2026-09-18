@@ -2,6 +2,8 @@
 
 为 Android 端 Minecraft Java 版启动器 (FCL) 提供 FFmpeg 原生库支持的插件。
 
+源码移植自 [PojavLauncherTeam/FFmpegPlugin](https://github.com/PojavLauncherTeam/FFmpegPlugin)。
+
 ## 构建
 
 ### 前置条件
